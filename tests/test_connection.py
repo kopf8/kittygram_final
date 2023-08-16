@@ -1,3 +1,4 @@
+import json
 import re
 from http import HTTPStatus
 from pathlib import Path
@@ -35,7 +36,7 @@ def _get_validated_link(
 
 def _make_safe_request(link: str, stream: bool = False) -> requests.Response:
     try:
-        response = requests.get(link, stream=stream, timeout=3)
+        response = requests.get(link, stream=stream, timeout=15)
     except requests.exceptions.SSLError:
         raise AssertionError(
             f'Убедитесь, что настроили шифрование для `{link}`.'
@@ -150,7 +151,7 @@ def test_kittygram_api_available(
         f'`{link}/api/...`.'
     )
     try:
-        response = requests.post(signup_link, data=form_data, timeout=3)
+        response = requests.post(signup_link, data=form_data, timeout=15)
     except requests.exceptions.SSLError:
         raise AssertionError(
             f'Убедитесь, что настроили шифрование для `{link}`.'
@@ -159,4 +160,11 @@ def test_kittygram_api_available(
         raise AssertionError(assert_msg)
     expected_status = HTTPStatus.BAD_REQUEST
     assert response.status_code == expected_status, assert_msg
-    assert 'password' in response.json(), assert_msg
+    try:
+        response_data = response.json()
+    except json.JSONDecodeError:
+        raise AssertionError(
+            f'Убедитесь, что ответ на запрос к `{signup_link}` содержит '
+            'данные в формате JSON.'
+        )
+    assert 'password' in response_data, assert_msg

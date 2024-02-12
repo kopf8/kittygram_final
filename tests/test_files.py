@@ -50,7 +50,10 @@ def test_backend_dokerfile_content(backend_dir_info: tuple[Path, str],
     path, _ = backend_dir_info
     with open(path / dockerfile_name, encoding='utf-8', errors='ignore') as f:
         dockerfile_content = f.read()
-    expected_keywords = ('from', 'run', 'cmd')
+    expected_keywords = (
+        'from', 'run',
+        'cmd' if 'cmd' in dockerfile_content.lower() else 'entrypoint'
+    )
     for keyword in expected_keywords:
         assert keyword in dockerfile_content.lower(), (
             f'Убедитесь, что настроили {dockerfile_name} для образа '

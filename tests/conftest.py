@@ -12,7 +12,6 @@ DEPLOY_INFO_FILE_NAME = 'tests.yml'
 KITTYGRAM_DOMAIN_KEY = 'kittygram_domain'
 TASKI_DOMAIN_KEY = 'taski_domain'
 DOCKERFILE_NAME = 'Dockerfile'
-DOCKERHUB_USERNAME_KEY = 'dockerhub_username'
 WORKFLOW_FILE = 'kittygram_workflow.yml'
 DOCKER_COMPOSE_PROD_FILE_NAME = 'docker-compose.production.yml'
 
@@ -43,11 +42,6 @@ def nginx_dir_info() -> tuple[Path, str]:
 @pytest.fixture(scope='session')
 def expected_nginx_files() -> set[str]:
     return {'nginx.conf', 'Dockerfile'}
-
-
-@pytest.fixture(scope='session')
-def dockerhub_username_key() -> str:
-    return DOCKERHUB_USERNAME_KEY
 
 
 @pytest.fixture
@@ -104,7 +98,6 @@ def expected_deploy_info_file_content() -> dict[str, str]:
         'repo_owner': 'ваше имя пользователя на GitHub',
         TASKI_DOMAIN_KEY: 'ссылка для доступа к проекту `Taski`',
         KITTYGRAM_DOMAIN_KEY: 'ссылка для доступа к проекту Kittygram',
-        'dockerhub_username': 'ваше имя пользователя на Docker Hub',
     }
 
 

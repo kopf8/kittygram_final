@@ -145,10 +145,6 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         script: |
-          sudo npm cache clean --force
-          sudo apt clean
-          sudo journalctl --vacuum-time=1d
-          sudo docker system prune -af
           cd kittygram
           sudo docker compose -f docker-compose.production.yml pull
           sudo docker compose -f docker-compose.production.yml down

@@ -171,4 +171,3 @@ jobs:
           User: ${{ github.actor }}
           Commit: ${{ github.event.commits[0].message }}
           Link on commit: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
-          Link on commit: https://github.com/${{ github.repository }}/commit/${{ github.sha }}

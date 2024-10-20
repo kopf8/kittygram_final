@@ -1,3 +1,28 @@
+# kittygram_final
+
+Sample project created during Yandex Practicum "Python backend developer".
+
+This project is a web-service with database, which allows users to publish photos of cats and their achievements.
+
+Project is running here: https://yandex-kittygram.hopto.org
+
+Technologies used:
+<ul>
+  <li>Python</li>
+  <li>Django</li>
+  <li>Django Rest Framework</li>
+  <li>Docker</li>
+  <li>PostgreSQL</li>
+  <li>Nginx</li>
+  <li>Gunicorn</li>
+  <li>GitHub actions</li>
+</ul>
+
+Below is an original README text from the initial project draft.
+
+---
+
+
 #  Как работать с репозиторием финального задания
 
 ## Что нужно сделать

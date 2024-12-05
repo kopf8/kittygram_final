@@ -7,12 +7,14 @@ services:
   db:
     image: postgres:13
     env_file: .env
+    restart: always
     volumes:
       - pg_data:/var/lib/postgresql/data
 
   backend:
     image: kopf8/kittygram_backend
     env_file: .env
+    restart: always
     depends_on:
       - db
     volumes:
@@ -29,6 +31,7 @@ services:
   gateway:
     image: kopf8/kittygram_gateway
     env_file: .env
+    restart: always
     depends_on:
       - backend
     ports:
